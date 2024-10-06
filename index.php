@@ -4,11 +4,32 @@ $username ="root";
 $password ="";
 $database ="expense";
 
-//if($conn){
-  //echo "success";
-//}else{
-  //  die("error ".mysql_connect_error());
-//}
+$conn = mysqli_connect($server, $username, $password ,$database);
+//$sql = "INSERT INTO `expense` (`item_name`, `amount`, `expense_date`, `discription`) VALUES ('$item_name', '$amount', '$expense_date', '$discription')";
+
+
+if(!$conn){
+ // echo "success";
+// }else{
+    die("error ".mysql_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $cpassword = $_POST["cpassword"];
+    $exists = false;
+
+    if (($password == $cpassword) && $exists == false) {
+        $sql = "INSERT INTO `users` (`username`, `password`, `dt`) VALUES ('$username', '$password', current_timestamp())";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            $showAlert = true;  
+        }
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -23,36 +44,40 @@ $database ="expense";
     <title>Document</title>
 </head>
 
-<body>
+<body class="flex items-center justify-center min-h-screen ">
 
+<div class="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Expense Calculator</h2>
+        <form method="POST" action="/expcalculator/index.php">
+            <!-- Item Name -->
+            <div class="mb-4">
+                <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name:</label>
+                <input type="text" id="item_name" name="item_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
 
-    <form method="POST" action="/expcalcutor/index.php">
-        <div class="mb-3">
-            <label for="item_name">Item Name:</label>
-            <input type="text" id="item_name" name="item_name" required>
-        </div>
-        <div class="mb-3">
-            <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" step="0.01" required>
-        </div>
-        <div class="mb-3">
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category">
-        </div>
-        <div class="mb-3">
-            <label for="expense_date">Date:</label>
-            <input type="date" id="expense_date" name="expense_date" required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+            <!-- Amount -->
+            <div class="mb-4">
+                <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
+                <input type="number" id="amount" name="amount" step="0.01" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
 
-        <button type="submit">Add Expense</button>
+            <!-- Date -->
+            <div class="mb-4">
+                <label for="expense_date" class="block text-sm font-medium text-gray-700">Date:</label>
+                <input type="date" id="expense_date" name="expense_date" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
 
-    </form>
+            <!-- Additional Notes -->
+            <div class="mb-6">
+                <label for="discription" class="block text-sm font-medium text-gray-700">Additional Notes:</label>
+                <textarea id="discription" name="discription" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
 
-
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add Expense</button>
+            </div>
+        </form>
 
 </body>
 
