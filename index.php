@@ -1,17 +1,6 @@
 <?php
-$showAlert = false; 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "expense";
 
-// Connect to the database
-$conn = mysqli_connect($server, $username, $password, $database);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
+include 'partials/_dbconnect.php';
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -106,35 +95,10 @@ foreach ($expenses as $expense) {
                 <h3 class="text-lg font-semibold text-gray-700">Total Expense: <span class="text-blue-600">₹<?= number_format($totalExpense, 2) ?></span></h3>
             </div>
         </div>
-
-        <!-- Table Section -->
-        <div class="w-1/2 bg-gray-50 p-6">
-            <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Stored Expenses</h2>
-            <div class="table-container">
-                <table class="min-w-full bg-white border border-gray-300">
-                    <thead>
-                        <tr>
-                            <th class="py-2 px-4 border-b text-left">Serial no</th>
-                            <th class="py-2 px-4 border-b text-left">Item Name</th>
-                            <th class="py-2 px-4 border-b text-left">Amount</th>
-                            <th class="py-2 px-4 border-b text-left">Date</th>
-                            <th class="py-2 px-4 border-b text-left">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($expenses as $expense): ?>
-                            <tr>
-                                <td class="py-2 px-4 border-b"><?= htmlspecialchars($expense['sno']) ?></td>
-                                <td class="py-2 px-4 border-b"><?= htmlspecialchars($expense['item_name']) ?></td>
-                                <td class="py-2 px-4 border-b">₹<?= number_format($expense['amount'], 2) ?></td>
-                                <td class="py-2 px-4 border-b"><?= htmlspecialchars($expense['expense_date']) ?></td>
-                                <td class="py-2 px-4 border-b"><?= htmlspecialchars($expense['discription']) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+        <div class="w-1/2 p-8">
+            <a href="index1.php"><button type="button" class="btn btn-primary">Middle</button></a>
         </div>
+
     </div>
 </body>
 </html>
