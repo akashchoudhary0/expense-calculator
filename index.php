@@ -1,37 +1,7 @@
 <?php
 
 include 'partials/_dbconnect.php';
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $item_name = $_POST["item_name"];
-    $amount = $_POST["amount"];
-    $expense_date = $_POST["expense_date"];
-    $discription = $_POST["discription"];
 
-    $sql = "INSERT INTO `expense` (`item_name`, `amount`, `expense_date`, `discription`) VALUES ('$item_name', '$amount', '$expense_date', '$discription')";
-    $result = mysqli_query($conn, $sql);
-    
-    if ($result) {
-        $showAlert = true;
-    }
-}
-
-// Fetch stored data
-$expenses = [];
-$sql = "SELECT * FROM `expense`";
-$result = mysqli_query($conn, $sql);
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $expenses[] = $row;
-    }
-}
-
-// Calculate total expenses
-$totalExpense = 0;
-foreach ($expenses as $expense) {
-    $totalExpense += (float)$expense['amount'];
-}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +21,7 @@ foreach ($expenses as $expense) {
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen"> 
-    <div class="flex w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="flex flex-col w-full max-w-5xl items-center justify-center bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Form Section -->
         <div class="w-1/2 p-8">
             <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Expense Calculator</h2>
@@ -95,10 +65,9 @@ foreach ($expenses as $expense) {
                 <h3 class="text-lg font-semibold text-gray-700">Total Expense: <span class="text-blue-600">₹<?= number_format($totalExpense, 2) ?></span></h3>
             </div>
         </div>
-        <div class="w-1/2 p-8">
-            <a href="index1.php"><button type="button" class="btn btn-primary">Middle</button></a>
+        <div class="w-1/2 p-8 items-center justify-center">
+            <a href="index1.php" class="items-center justify-center"><button type="button" class="btn btn-primary ">view expense</button></a>
         </div>
-
     </div>
 </body>
 </html>
