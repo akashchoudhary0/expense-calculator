@@ -1,6 +1,5 @@
 <?php
 
-
 $showAlert = false; 
 $server = "localhost";
 $username = "root";
