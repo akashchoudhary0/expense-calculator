@@ -2,6 +2,8 @@
 
 include 'partials/_dbconnect.php';
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +23,11 @@ include 'partials/_dbconnect.php';
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen"> 
-    <div class="flex flex-col w-full max-w-5xl items-center justify-center bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="flex w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Form Section -->
         <div class="w-1/2 p-8">
             <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Expense Calculator</h2>
-            <form method="POST" action="/expense/index.php">
+            <form method="POST" action="/akash/index.php">
                 <!-- Item Name -->
                 <div class="mb-4">
                     <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name:</label>
@@ -65,9 +67,10 @@ include 'partials/_dbconnect.php';
                 <h3 class="text-lg font-semibold text-gray-700">Total Expense: <span class="text-blue-600">₹<?= number_format($totalExpense, 2) ?></span></h3>
             </div>
         </div>
-        <div class="w-1/2 p-8 items-center justify-center">
-            <a href="index1.php" class="items-center justify-center"><button type="button" class="btn btn-primary ">view expense</button></a>
+        <div class="w-1/2 p-8">
+            <a href="index1.php"><button type="button" class="btn btn-primary">Middle</button></a>
         </div>
+
     </div>
 </body>
 </html>
