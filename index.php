@@ -1,8 +1,7 @@
 <?php
 
+// Include database connection
 include 'partials/_dbconnect.php';
-
-
 
 ?>
 
@@ -21,13 +20,21 @@ include 'partials/_dbconnect.php';
         }
     </style>
 </head>
-
-<body class="bg-gray-100 flex items-center justify-center min-h-screen"> 
-    <div class="flex w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+<body class="bg-gray-100 "> 
+    <div class="flex w-full  bg-white shadow-lg rounded-lg overflow-hidden items-center justify-center ">
         <!-- Form Section -->
-        <div class="w-1/2 p-8">
-            <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Expense Calculator</h2>
-            <form method="POST" action="/akash/index.php">
+        <div class="w-3/4 p-8 items-center justify-center">
+           
+            <div class="flex flex-row justify-between">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Expense Calculator</h2>
+                <a href="index1.php">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      View 
+                  </button>
+                </a>
+                
+            </div>
+            <form method="POST" action="">
                 <!-- Item Name -->
                 <div class="mb-4">
                     <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name:</label>
@@ -53,24 +60,25 @@ include 'partials/_dbconnect.php';
                 </div>
 
                 <!-- Submit Button -->
-                <div>
-                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add Expense</button>
+                <div class="flex justify-center">
+                    <button type="submit" class="w-1/4 bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Add Expense
+                    </button>
                 </div>
             </form>
+
+           
             
             <?php if ($showAlert): ?>
-                <div class="alert alert-info mt-4" role="alert">Record entered successfully</div>
+                <div class="alert alert-success mt-4" role="alert">Record entered successfully!</div>
             <?php endif; ?>
 
-            <!-- Display Total Expense -->
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold text-gray-700">Total Expense: <span class="text-blue-600">₹<?= number_format($totalExpense, 2) ?></span></h3>
-            </div>
-        </div>
-        <div class="w-1/2 p-8">
-            <a href="index1.php"><button type="button" class="btn btn-primary">Middle</button></a>
+           
+
+            
         </div>
 
+       
     </div>
 </body>
 </html>
